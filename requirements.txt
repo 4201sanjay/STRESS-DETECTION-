@@ -1,0 +1,4 @@
+google-cloud-vision
+opencv-python
+requests
+python-dotenv
