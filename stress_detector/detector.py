@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-model_id = os.getenv('MODEL_ID_3')
+model_id = os.getenv('MODEL_ID_1') 
 API_KEY = os.getenv('API_KEY')
 
 face_image_path = "captured_face.png"
@@ -57,7 +57,6 @@ def main():
         if not ret:
             print("Failed to capture image")
             break
-        
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         
         face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
@@ -68,10 +67,10 @@ def main():
 
     
             if stress_prediction:
-                # predicted_class = max(stress_prediction, key=lambda k: stress_prediction[k]['confidence'])
-                # confidence = stress_prediction[predicted_class]['confidence']
-                predicted_class = stress_prediction[0]['class']
-                confidence = stress_prediction[0]['confidence']
+                predicted_class = max(stress_prediction, key=lambda k: stress_prediction[k]['confidence'])
+                confidence = stress_prediction[predicted_class]['confidence']
+                # predicted_class = stress_prediction[0]['class']
+                # confidence = stress_prediction[0]['confidence']
                 text = f"{predicted_class}: {confidence:.2f}"
 
         
